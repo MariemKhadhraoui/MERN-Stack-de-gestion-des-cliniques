@@ -1,0 +1,4 @@
+.inline-container {
+  display: flex;
+  gap: 1rem; /* Add some gap between the fields (optional) */
+}

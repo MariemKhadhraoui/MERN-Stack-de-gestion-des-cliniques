@@ -1,0 +1,19 @@
+{
+    "users": [
+      {
+      "  firstName": "John",
+       " lastName": "Doe",
+       " sex": "Male",
+        "age": "30",
+       " bloodGroup":"A+",
+       " mobile": "+1234567890",
+       " email": "john.doe@example.com",
+      "  address": "123 Main St",
+       " city": "New York",
+        "state": "NY",
+        "remarks": "Some remarks about the patient",
+       "image": "https://example.com/image.jpg",
+      }
+    ]
+  }
+  

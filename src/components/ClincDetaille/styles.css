@@ -1,0 +1,68 @@
+/* CliniquePage.css */
+.clinic-details-container {
+  /* ... Rest of the styles ... */
+  animation: fadeIn 0.5s ease;
+  opacity: 0; /* Hide the clinic details initially */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.header {
+  position: relative;
+  height: 300px;
+  text-align: center;
+  color: #fff;
+}
+
+.header-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  float: right; /* Updated to float to the right */
+  width: 70%; /* Updated to take 70% width */
+  margin: 20px;
+}
+
+.sidebar {
+  float: left; /* Updated to float to the left */
+  width: 30%;
+  margin: 20px;
+}
+
+.clinic-image {
+  width: 100%;
+}
+
+.footer {
+  background: #f0f0f0;
+  padding: 20px;
+}
+.goHomeButton {
+  transition: transform 0.3s ease;
+}
+
+.goHomeButton:hover {
+  transform: scale(1.05); /* Slightly scale up the button on hover */
+}
+.editButton {
+  /* ... Other styles ... */
+  transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: #2196f3; /* Change the color on hover */
+}
+.cardRoot {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
