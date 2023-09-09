@@ -22,15 +22,18 @@ const ClinicForm = ({ onClose }) => {
     description: '',
     id_directeur: '',
     image: null, // Utilisez null pour représenter l'absence d'image au départ
-    latitude: '',
-    longitude: '',
+    latitude: 0.0,
+    longitude: 0.0,
     dateOuverture: '',
     horairesOuvertureL: '',
   });
+
+
+  const [imagePreview, setImagePreview] = useState()
   const updateCoordinates = (lat, lng) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      coordinates: { lat, lng },
+      latitude: lat,longitude: lng
     }));
   };
   const handleChange = (event) => {
@@ -43,17 +46,27 @@ const ClinicForm = ({ onClose }) => {
     
   };
   const handleImageUpload = (e) => {
-    const selectedImage = e.target.files[0];
-    setFormData({ ...formData, image: selectedImage });
+    try{const selectedImage = e.target.files[0];
+    setFormData((prev)=>{ 
+      const formD = {...prev}
+      formD.image = e.target.files[0]
+      console.log(`image  :${formD.image}`)
+      return formD;
+    });
 
     // Create a preview for the selected image
     const reader = new FileReader();
     reader.onloadend = () => {
-      setFormData({ ...formData, imagePreview: reader.result });
+      setImagePreview( reader.result );
     };
     reader.readAsDataURL(selectedImage);
 
-  };
+  }catch (error)
+  {
+    alert(error.message)
+  }
+
+};
   const handleClose = () => {
     onClose();
   }
@@ -67,6 +80,7 @@ const ClinicForm = ({ onClose }) => {
     setError('');
     setSuccess('');
 
+    alert(`image11111111111 :${formData.image}`)
     const formDataToSend = new FormData();
 
     // Transférez toutes les valeurs du formulaire dans formDataToSend
@@ -74,16 +88,11 @@ const ClinicForm = ({ onClose }) => {
       formDataToSend.append(key, formData[key]);
     });
     
-  
     try {
-      const response = await axios.post('http://localhost:5000/api/clinique/add', formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.post('http://localhost:5000/api/clinique/add', formDataToSend
+      );
       setSuccess(response.data.message);
-
-  // Réinitialisez le formulaire après un ajout réussi
+/*
   setFormData({
     nom: '',
     adresse: '',
@@ -99,7 +108,7 @@ const ClinicForm = ({ onClose }) => {
     longitude: '',
     dateOuverture: '',
     horairesOuvertureL: '',
-  });
+  }); */
 
 
 } catch (error) {
@@ -237,8 +246,8 @@ const ClinicForm = ({ onClose }) => {
 
       </DialogContent>
       <div>
-        {formData.imagePreview ? (
-          <Avatar src={formData.imagePreview} alt="Avatar" sx={{ width: 100, height: 100 }} />
+        {imagePreview ? (
+          <Avatar src={imagePreview} alt="Avatar" sx={{ width: 100, height: 100 }} />
         ) : (
       
 

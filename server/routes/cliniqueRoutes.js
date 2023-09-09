@@ -4,11 +4,7 @@ const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
 
-const cliniqueController = require('../controllers/cliniqueController'); 
-
-
-
-
+const cliniqueController = require('../controllers/cliniqueController');
 
 //------------------------ Cloudinary Infos -----------------------------------------------//
 //Configuration de Cloudinary
@@ -22,17 +18,16 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'cliniqueImages', //  dossier dans lequel les images seront stockées sur Cloudinary
-    allowed_formats: ['jpg', 'jpeg', 'png'] //  formats de fichier autorisés
-  }
+    allowed_formats: ['jpg', 'jpeg', 'png'], //  formats de fichier autorisés
+  },
 });
 
 const upload = multer({ storage: storage });
 
-
 // Enregistrement d'une clinique
 router.post('/add', upload.single('image'), cliniqueController.createClinique);
 
- // Modification d'une clinique
+// Modification d'une clinique
 router.put('/put/:id', upload.single('image'), cliniqueController.updateClinique);
 
 // Affichage d'une clinique

@@ -19,7 +19,6 @@ export default function App() {
         <ThemeProvider>
           <ScrollToTop />
           <StyledChart />
-
           <Router />
         </ThemeProvider>
       </BrowserRouter>

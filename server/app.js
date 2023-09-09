@@ -1,21 +1,21 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const http = require("http");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const color = require("colors");
 require("dotenv").config();
 
-var usersRouter = require("./routes/userRoutes");
-var cliniqueRouter = require("./routes/cliniqueRoutes");
-var rendezVousRouter = require("./routes/rendezVousRoutes");
-var departementRouter = require("./routes/departementRoutes");
-var serviceRouter = require("./routes/serviceRoutes");
+const usersRouter = require("./routes/userRoutes");
+const cliniqueRouter = require("./routes/cliniqueRoutes");
+const rendezVousRouter = require("./routes/rendezVousRoutes");
+const departementRouter = require("./routes/departementRoutes");
+const serviceRouter = require("./routes/serviceRoutes");
 
-var app = express();
+const app = express();
 
 app.use(cors({
   origin: ['http://localhost:3000'],
@@ -44,12 +44,12 @@ app.use("/api/departement", departementRouter);
 app.use("/api/service", serviceRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use( (req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use( (err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -70,7 +70,6 @@ mongoose
     console.log(err.message);
   });
 
-//------------------ Connection to the Server --------------------------------------//
 const server = http.createServer(app);
 server.listen(5000, () => {
   console.log("app is running on port 5000".bold);

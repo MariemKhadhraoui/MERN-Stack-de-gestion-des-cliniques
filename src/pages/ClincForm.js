@@ -46,9 +46,7 @@ export default function Page404() {
       <Helmet>
         <title> Add Clinic | Minimal UI </title>
       </Helmet>
-
       <StyledContent>
-
         <StyledContainer>
           <StyledButton
             to="/"
